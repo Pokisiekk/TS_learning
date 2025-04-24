@@ -1,0 +1,22 @@
+{
+  "name": "ts_learning",
+  "version": "1.0.0",
+  "description": "This repository is for recording my progress in learning test automation using TypeScript and\r Playwrigt.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pokisiekk/TS_learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pokisiekk/TS_learning/issues"
+  },
+  "homepage": "https://github.com/Pokisiekk/TS_learning#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.14.1"
+  }
+}
