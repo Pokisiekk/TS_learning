@@ -4,19 +4,15 @@ test.describe('Login to Demobank', () => {
 
   test('Login with correct credentials', async ({ page }) => {
     await page.goto('https://demo-bank.vercel.app/');
-    await page.getByTestId('login-input').click();
     await page.getByTestId('login-input').fill('testerrr');
-    await page.getByTestId('password-input').click();
     await page.getByTestId('password-input').fill('testerrr');
     await page.getByTestId('login-button').click();
-    await page.getByTestId('user-name').click();
 
     await expect(page.getByTestId('user-name')).toHaveText('Jan Demobankowy');
   });
 
   test('Login with incorrect username', async ({ page }) => {
     await page.goto('https://demo-bank.vercel.app/');
-    await page.getByTestId('login-input').click();
     await page.getByTestId('login-input').fill('test');
     await page.getByTestId('login-input').blur();
 
@@ -25,9 +21,7 @@ test.describe('Login to Demobank', () => {
 
   test('Login with incorrect password', async ({ page }) => {
     await page.goto('https://demo-bank.vercel.app/');
-    await page.getByTestId('login-input').click();
     await page.getByTestId('login-input').fill('testerrr');
-    await page.getByTestId('password-input').click();
     await page.getByTestId('password-input').fill('test');
     await page.getByTestId('password-input').blur();
 
