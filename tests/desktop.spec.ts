@@ -10,7 +10,7 @@ test.describe('My desktop page', () => {
     await page.locator('#widget_1_transfer_receiver').selectOption('3');
     await page.locator('#widget_1_transfer_amount').fill('200');
     await page.locator('#widget_1_transfer_title').fill('Pożyczka');
-    await page.locator('#execute_btn').click();
+    await page.getByRole('button', { name: 'wykonaj' }).click();
     await page.getByTestId('close-button').click();
 
     await expect(page.locator('#show_messages')).toHaveText('Przelew wykonany! Michael Scott - 200,00PLN - Pożyczka');
