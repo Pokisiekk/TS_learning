@@ -23,4 +23,15 @@ test.describe('Login to Demobank', () => {
     await expect(page.getByTestId('error-login-id')).toHaveText('identyfikator ma min. 8 znaków');
   });
 
+  test('Login with incorrect password', async ({ page }) => {
+    await page.goto('https://demo-bank.vercel.app/');
+    await page.getByTestId('login-input').click();
+    await page.getByTestId('login-input').fill('testerrr');
+    await page.getByTestId('password-input').click();
+    await page.getByTestId('password-input').fill('test');
+    await page.getByTestId('login-input').click();
+
+    await expect(page.getByTestId('error-login-password')).toHaveText('hasło ma min. 8 znaków');
+  });
+
 });
