@@ -4,8 +4,9 @@ test.describe('Login to Demobank', () => {
   const eightCharacters = 'testerrr';
   const fourCharacters = 'test';
 
-  test.beforeEach( async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     const url = 'https://demo-bank.vercel.app/';
+    
     await page.goto(url);
   });
 
