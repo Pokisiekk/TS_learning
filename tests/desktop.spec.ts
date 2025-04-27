@@ -1,8 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('My desktop page', () => {
-  const url = 'https://demo-bank.vercel.app/';
-  const eightCharacters = 'testerrr';
+  test.beforeEach(async ({ page }) => {
+    const url = 'https://demo-bank.vercel.app/';
+    const eightCharacters = 'testerrr';
+
+    await page.goto(url);
+    await page.getByTestId('login-input').fill(eightCharacters);
+    await page.getByTestId('password-input').fill(eightCharacters);
+    await page.getByTestId('login-button').click();
+  });
 
   test('Make payment', async ({ page }) => {
     const receiverId = '3';
@@ -10,10 +17,6 @@ test.describe('My desktop page', () => {
     const amount = '200';
     const title = 'Pożyczka';
 
-    await page.goto(url);
-    await page.getByTestId('login-input').fill(eightCharacters);
-    await page.getByTestId('password-input').fill(eightCharacters);
-    await page.getByTestId('login-button').click();
     await page.locator('#widget_1_transfer_receiver').selectOption(receiverId);
     await page.locator('#widget_1_transfer_amount').fill(amount);
     await page.locator('#widget_1_transfer_title').fill(title);
@@ -29,10 +32,6 @@ test.describe('My desktop page', () => {
     const phoneNumber = '500 xxx xxx';
     const amount = '50';
 
-    await page.goto(url);
-    await page.getByTestId('login-input').fill(eightCharacters);
-    await page.getByTestId('password-input').fill(eightCharacters);
-    await page.getByTestId('login-button').click();
     await page.locator('#widget_1_topup_receiver').selectOption(phoneNumber);
     await page.locator('#widget_1_topup_amount').fill(amount);
     await page.locator('#uniform-widget_1_topup_agreement span').click();
