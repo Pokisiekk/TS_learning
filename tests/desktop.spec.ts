@@ -23,7 +23,7 @@ test.describe('My desktop page', () => {
     await page.getByTestId('login-button').click();
     await page.locator('#widget_1_topup_receiver').selectOption('500 xxx xxx');
     await page.locator('#widget_1_topup_amount').fill('50');
-    await page.locator('#widget_1_topup_agreement').click();
+    await page.locator('#uniform-widget_1_topup_agreement span').click();
     await page.getByRole('button', { name: 'doładuj telefon' }).click();
     await page.getByTestId('close-button').click();
 
