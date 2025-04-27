@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('My desktop page', () => {
-  const url = 'https://demo-bank.vercel.app/'
-  const eightCharacters = 'testerrr'
+  const url = 'https://demo-bank.vercel.app/';
+  const eightCharacters = 'testerrr';
 
   test('Make payment', async ({ page }) => {
-    const receiverId = '3'
-    const receiverName = 'Michael Scott'
-    const amount = '200'
-    const title = 'Pożyczka'
+    const receiverId = '3';
+    const receiverName = 'Michael Scott';
+    const amount = '200';
+    const title = 'Pożyczka';
 
     await page.goto(url);
     await page.getByTestId('login-input').fill(eightCharacters);
@@ -20,12 +20,14 @@ test.describe('My desktop page', () => {
     await page.getByRole('button', { name: 'wykonaj' }).click();
     await page.getByTestId('close-button').click();
 
-    await expect(page.locator('#show_messages')).toHaveText(`Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`);
+    await expect(page.locator('#show_messages')).toHaveText(
+      `Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`,
+    );
   });
 
   test('Phone top-up', async ({ page }) => {
-    const phoneNumber = '500 xxx xxx'
-    const amount = '50'
+    const phoneNumber = '500 xxx xxx';
+    const amount = '50';
 
     await page.goto(url);
     await page.getByTestId('login-input').fill(eightCharacters);
@@ -37,7 +39,8 @@ test.describe('My desktop page', () => {
     await page.getByRole('button', { name: 'doładuj telefon' }).click();
     await page.getByTestId('close-button').click();
 
-    await expect(page.getByTestId('message-text')).toHaveText(`Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`);
+    await expect(page.getByTestId('message-text')).toHaveText(
+      `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`,
+    );
   });
-
 });
