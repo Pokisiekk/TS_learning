@@ -17,6 +17,7 @@
   "homepage": "https://github.com/Pokisiekk/TS_learning#readme",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.14.1"
+    "@types/node": "^22.14.1",
+    "prettier": "3.5.3"
   }
 }
