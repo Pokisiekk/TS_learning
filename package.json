@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This repository is for recording my progress in learning test automation using TypeScript and\r Playwrigt.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pokisiekk/TS_learning.git"
