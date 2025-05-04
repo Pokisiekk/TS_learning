@@ -4,7 +4,10 @@
   "description": "This repository is for recording my progress in learning test automation using TypeScript and\r Playwrigt.",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:pulpit": "npm run test tests/pulpit.spec.ts",
+    "test:login": "npm run test tests/login.spec.ts"  
   },
   "repository": {
     "type": "git",
