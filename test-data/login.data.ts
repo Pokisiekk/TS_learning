@@ -1,4 +1,4 @@
 export const loginData = {
-    eightCharacters: 'testerrr',
-    fourCharacters: 'test'
-}
+  eightCharacters: 'testerrr',
+  fourCharacters: 'test',
+};
