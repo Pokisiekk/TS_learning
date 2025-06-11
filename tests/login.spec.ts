@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 
 test.describe('Login to Demobank', () => {
-  test.beforeEach(async ({ page }) => {    
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
