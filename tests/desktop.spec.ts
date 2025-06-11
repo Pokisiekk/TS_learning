@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { loginData } from '../test-data/login.data';
 
 test.describe('My desktop page', () => {
   test.beforeEach(async ({ page }) => {
-    const eightCharacters = 'testerrr';
+    const eightCharacters = loginData.eightCharacters;
 
     await page.goto('/');
     await page.getByTestId('login-input').fill(eightCharacters);
