@@ -55,8 +55,6 @@ test.describe('My desktop page', () => {
     await page.getByRole('button', { name: 'doładuj telefon' }).click();
     await page.getByTestId('close-button').click();
 
-    await expect(page.locator('#money_value')).toHaveText(
-      `${expectedBalance}`,
-    );
+    await expect(page.locator('#money_value')).toHaveText(`${expectedBalance}`);
   });
 });
