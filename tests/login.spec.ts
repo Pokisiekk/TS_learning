@@ -1,12 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { loginData } from '../test-data/login.data';
 
 test.describe('Login to Demobank', () => {
-  test.beforeEach(async ({ page }) => {    
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
   test('Login with correct credentials', async ({ page }) => {
-    const eightCharacters = 'testerrr';
+    const eightCharacters = loginData.eightCharacters;
     const expectedUser = 'Jan Demobankowy';
 
     await page.getByTestId('login-input').fill(eightCharacters);
@@ -17,7 +18,7 @@ test.describe('Login to Demobank', () => {
   });
 
   test('Login with incorrect username', async ({ page }) => {
-    const fourCharacters = 'test';
+    const fourCharacters = loginData.fourCharacters;
     const expectedWarning = 'identyfikator ma min. 8 znaków';
 
     await page.getByTestId('login-input').fill(fourCharacters);
@@ -29,8 +30,8 @@ test.describe('Login to Demobank', () => {
   });
 
   test('Login with incorrect password', async ({ page }) => {
-    const eightCharacters = 'testerrr';
-    const fourCharacters = 'test';
+    const eightCharacters = loginData.eightCharacters;
+    const fourCharacters = loginData.fourCharacters;
     const expectedWarning = 'hasło ma min. 8 znaków';
 
     await page.getByTestId('login-input').fill(eightCharacters);
