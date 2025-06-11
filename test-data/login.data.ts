@@ -1,3 +1,4 @@
-export const eightCharacters = 'testerrr';
-
-const loginData = {}
+export const loginData = {
+    eightCharacters: 'testerrr',
+    fourCharacters: 'test'
+}
