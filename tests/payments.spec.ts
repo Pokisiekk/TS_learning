@@ -1,16 +1,19 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
+import { LoginPage } from '../pages/login.page';
 
 test.describe('Payments', () => {
   test.beforeEach(async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
+    const loginPage = new LoginPage(page);
 
     await page.goto('/');
-    await page.getByTestId('login-input').fill(eightCharacters);
-    await page.getByTestId('password-input').fill(eightCharacters);
-    await page.getByTestId('login-button').click();
+    await loginPage.loginInput.fill(eightCharacters);
+    await loginPage.passwordInput.fill(eightCharacters);
+    await loginPage.loginButton.click();
     await page.getByRole('link', { name: 'płatności' }).click();
   });
+
   test('Single Payment', async ({ page }) => {
     const receiverName = 'Jan Nowak';
     const receiverAccount = '13 4324 3564 6453 2143 2143 43255';
