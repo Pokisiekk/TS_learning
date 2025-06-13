@@ -7,7 +7,7 @@
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:pulpit": "npm run test tests/pulpit.spec.ts",
-    "test:login": "npm run test tests/login.spec.ts"  
+    "test:login": "npm run test tests/login.spec.ts"
   },
   "repository": {
     "type": "git",
