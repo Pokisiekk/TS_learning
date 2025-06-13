@@ -8,7 +8,7 @@ test.describe('Payments', () => {
   test.beforeEach(async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
     const loginPage = new LoginPage(page);
-    const desktoppage = new DesktopPage(page)
+    const desktoppage = new DesktopPage(page);
 
     await page.goto('/');
     await loginPage.loginInput.fill(eightCharacters);
