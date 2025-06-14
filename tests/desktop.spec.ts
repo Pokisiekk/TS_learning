@@ -15,7 +15,7 @@ test.describe('My desktop page', () => {
     await loginPage.login(eightCharacters);
   });
 
-  test('Make payment', async ({ page }) => {
+  test('Make payment @desktop @integration', async ({ page }) => {
     const receiverId = '3';
     const receiverName = 'Michael Scott';
     const amount = '200';
@@ -27,7 +27,7 @@ test.describe('My desktop page', () => {
     await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
   });
 
-  test('Phone top-up', async ({ page }) => {
+  test('Phone top-up @desktop @integration', async ({ page }) => {
     const phoneNumber = '500 xxx xxx';
     const amount = '50';
     const expectedMessage = `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`;
@@ -37,7 +37,9 @@ test.describe('My desktop page', () => {
     await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
   });
 
-  test('Balance check after phone top-up', async ({ page }) => {
+  test('Balance check after phone top-up @desktop @integration', async ({
+    page,
+  }) => {
     const phoneNumber = '500 xxx xxx';
     const amount = '50';
     const initBalance = await desktopPage.moneyValue.innerText();

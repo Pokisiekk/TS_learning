@@ -11,7 +11,7 @@ test.describe('Login to Demobank', () => {
     await page.goto('/');
   });
 
-  test('Login with correct credentials', async ({ page }) => {
+  test('Login with correct credentials @login @smoke', async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
     const expectedUser = 'Jan Demobankowy';
     const desktopPage = new DesktopPage(page);
@@ -21,7 +21,7 @@ test.describe('Login to Demobank', () => {
     await expect(desktopPage.userName).toHaveText(expectedUser);
   });
 
-  test('Login with incorrect username', async ({ page }) => {
+  test('Login with incorrect username @login', async ({ page }) => {
     const fourCharacters = loginData.fourCharacters;
     const expectedWarning = 'identyfikator ma min. 8 znaków';
 
@@ -31,7 +31,7 @@ test.describe('Login to Demobank', () => {
     await expect(loginPage.loginError).toHaveText(expectedWarning);
   });
 
-  test('Login with incorrect password', async ({ page }) => {
+  test('Login with incorrect password @login', async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
     const fourCharacters = loginData.fourCharacters;
     const expectedWarning = 'hasło ma min. 8 znaków';

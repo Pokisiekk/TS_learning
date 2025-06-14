@@ -18,7 +18,7 @@ test.describe('Payments', () => {
     await desktoppage.navBar.paymentsOption.click();
   });
 
-  test('Single Payment', async ({ page }) => {
+  test('Single Payment @payment @integration', async ({ page }) => {
     const receiverName = 'Jan Nowak';
     const receiverAccount = '13 4324 3564 6453 2143 2143 43255';
     const amount = '17';
