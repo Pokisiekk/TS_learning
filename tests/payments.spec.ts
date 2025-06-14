@@ -11,9 +11,7 @@ test.describe('Payments', () => {
     const desktoppage = new DesktopPage(page);
 
     await page.goto('/');
-    await loginPage.loginInput.fill(eightCharacters);
-    await loginPage.passwordInput.fill(eightCharacters);
-    await loginPage.loginButton.click();
+    await loginPage.login(eightCharacters)
     await desktoppage.navBar.paymentsOption.click();
   });
 
