@@ -17,4 +17,24 @@ export class DesktopPage {
   moneyValue = this.page.locator('#money_value');
   closeButton = this.page.getByTestId('close-button');
   messageLabel = this.page.getByTestId('message-text');
+
+  async makeQuickTransfer(
+    receiverId: string,
+    amount: string,
+    title: string,
+  ): Promise<void> {
+    await this.receiverSelector.selectOption(receiverId);
+    await this.transferAmount.fill(amount);
+    await this.transferTitle.fill(title);
+    await this.transferButton.click();
+    await this.closeButton.click();
+  }
+
+  async topupPhone(phoneNumber: string, amount: string): Promise<void> {
+    await this.numberSelector.selectOption(phoneNumber);
+    await this.topupAmount.fill(amount);
+    await this.topupAgreement.click();
+    await this.topupButton.click();
+    await this.closeButton.click();
+  }
 }
