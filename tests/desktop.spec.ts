@@ -15,38 +15,48 @@ test.describe('My desktop page', () => {
     await loginPage.login(eightCharacters);
   });
 
-  test('Make payment @desktop @integration', async ({ page }) => {
-    const receiverId = '3';
-    const receiverName = 'Michael Scott';
-    const amount = '200';
-    const title = 'Pożyczka';
-    const expectedMessage = `Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`;
+  test(
+    'Make payment',
+    { tag: ['@desktop', '@integration'] },
+    async ({ page }) => {
+      const receiverId = '3';
+      const receiverName = 'Michael Scott';
+      const amount = '200';
+      const title = 'Pożyczka';
+      const expectedMessage = `Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`;
 
-    await desktopPage.makeQuickTransfer(receiverId, amount, title);
+      await desktopPage.makeQuickTransfer(receiverId, amount, title);
 
-    await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
-  });
+      await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
+    },
+  );
 
-  test('Phone top-up @desktop @integration', async ({ page }) => {
-    const phoneNumber = '500 xxx xxx';
-    const amount = '50';
-    const expectedMessage = `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`;
+  test(
+    'Phone top-up',
+    { tag: ['@desktop', '@integration'] },
+    async ({ page }) => {
+      const phoneNumber = '500 xxx xxx';
+      const amount = '50';
+      const expectedMessage = `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`;
 
-    await desktopPage.topupPhone(phoneNumber, amount);
+      await desktopPage.topupPhone(phoneNumber, amount);
 
-    await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
-  });
+      await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
+    },
+  );
 
-  test('Balance check after phone top-up @desktop @integration', async ({
-    page,
-  }) => {
-    const phoneNumber = '500 xxx xxx';
-    const amount = '50';
-    const initBalance = await desktopPage.moneyValue.innerText();
-    const expectedBalance = Number(initBalance) - Number(amount);
+  test(
+    'Balance check after phone top-up',
+    { tag: ['@desktop', '@integration'] },
+    async ({ page }) => {
+      const phoneNumber = '500 xxx xxx';
+      const amount = '50';
+      const initBalance = await desktopPage.moneyValue.innerText();
+      const expectedBalance = Number(initBalance) - Number(amount);
 
-    await desktopPage.topupPhone(phoneNumber, amount);
+      await desktopPage.topupPhone(phoneNumber, amount);
 
-    await expect(desktopPage.moneyValue).toHaveText(`${expectedBalance}`);
-  });
+      await expect(desktopPage.moneyValue).toHaveText(`${expectedBalance}`);
+    },
+  );
 });
