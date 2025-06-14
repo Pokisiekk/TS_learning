@@ -22,11 +22,7 @@ test.describe('My desktop page', () => {
     const title = 'Pożyczka';
     const expectedMessage = `Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`;
 
-    await desktopPage.receiverSelector.selectOption(receiverId);
-    await desktopPage.transferAmount.fill(amount);
-    await desktopPage.transferTitle.fill(title);
-    await desktopPage.transferButton.click();
-    await desktopPage.closeButton.click();
+    await desktopPage.makeQuickTransfer(receiverId, amount, title);
 
     await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
   });
@@ -36,11 +32,7 @@ test.describe('My desktop page', () => {
     const amount = '50';
     const expectedMessage = `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`;
 
-    await desktopPage.numberSelector.selectOption(phoneNumber);
-    await desktopPage.topupAmount.fill(amount);
-    await desktopPage.topupAgreement.click();
-    await desktopPage.topupButton.click();
-    await desktopPage.closeButton.click();
+    await desktopPage.topupPhone(phoneNumber, amount);
 
     await expect(desktopPage.messageLabel).toHaveText(expectedMessage);
   });
@@ -51,11 +43,7 @@ test.describe('My desktop page', () => {
     const initBalance = await desktopPage.moneyValue.innerText();
     const expectedBalance = Number(initBalance) - Number(amount);
 
-    await desktopPage.numberSelector.selectOption(phoneNumber);
-    await desktopPage.topupAmount.fill(amount);
-    await desktopPage.topupAgreement.click();
-    await desktopPage.topupButton.click();
-    await desktopPage.closeButton.click();
+    await desktopPage.topupPhone(phoneNumber, amount);
 
     await expect(desktopPage.moneyValue).toHaveText(`${expectedBalance}`);
   });
