@@ -5,13 +5,16 @@ import { PaymentsPage } from '../pages/payments.page';
 import { DesktopPage } from '../pages/desktop.page';
 
 test.describe('Payments', () => {
+  let paymentsPage: PaymentsPage;
+
   test.beforeEach(async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
     const loginPage = new LoginPage(page);
     const desktoppage = new DesktopPage(page);
+    paymentsPage = new PaymentsPage(page);
 
     await page.goto('/');
-    await loginPage.login(eightCharacters)
+    await loginPage.login(eightCharacters);
     await desktoppage.navBar.paymentsOption.click();
   });
 
@@ -20,13 +23,8 @@ test.describe('Payments', () => {
     const receiverAccount = '13 4324 3564 6453 2143 2143 43255';
     const amount = '17';
     const expectedMessage = `Przelew wykonany! ${amount},00PLN dla ${receiverName}`;
-    const paymentsPage = new PaymentsPage(page);
 
-    await paymentsPage.receiverName.fill(receiverName);
-    await paymentsPage.receiverAccount.fill(receiverAccount);
-    await paymentsPage.transferAmount.fill(amount);
-    await paymentsPage.transferButton.click();
-    await paymentsPage.closeButton.click();
+    await paymentsPage.makeTransfer(receiverName, receiverAccount, amount);
 
     await expect(paymentsPage.messageLabel).toHaveText(expectedMessage);
   });
