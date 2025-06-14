@@ -4,9 +4,12 @@ import { LoginPage } from '../pages/login.page';
 import { DesktopPage } from '../pages/desktop.page';
 
 test.describe('My desktop page', () => {
+  let desktopPage: DesktopPage;
+
   test.beforeEach(async ({ page }) => {
     const eightCharacters = loginData.eightCharacters;
     const loginPage = new LoginPage(page);
+    desktopPage = new DesktopPage(page);
 
     await page.goto('/');
     await loginPage.loginInput.fill(eightCharacters);
@@ -20,7 +23,6 @@ test.describe('My desktop page', () => {
     const amount = '200';
     const title = 'Pożyczka';
     const expectedMessage = `Przelew wykonany! ${receiverName} - ${amount},00PLN - ${title}`;
-    const desktopPage = new DesktopPage(page);
 
     await desktopPage.receiverSelector.selectOption(receiverId);
     await desktopPage.transferAmount.fill(amount);
@@ -35,7 +37,6 @@ test.describe('My desktop page', () => {
     const phoneNumber = '500 xxx xxx';
     const amount = '50';
     const expectedMessage = `Doładowanie wykonane! ${amount},00PLN na numer ${phoneNumber}`;
-    const desktopPage = new DesktopPage(page);
 
     await desktopPage.numberSelector.selectOption(phoneNumber);
     await desktopPage.topupAmount.fill(amount);
@@ -49,7 +50,6 @@ test.describe('My desktop page', () => {
   test('Balance check after phone top-up', async ({ page }) => {
     const phoneNumber = '500 xxx xxx';
     const amount = '50';
-    const desktopPage = new DesktopPage(page);
     const initBalance = await desktopPage.moneyValue.innerText();
     const expectedBalance = Number(initBalance) - Number(amount);
 
