@@ -16,7 +16,7 @@ test.describe('Login to Demobank', () => {
     const expectedUser = 'Jan Demobankowy';
     const desktopPage = new DesktopPage(page);
 
-    await loginPage.login(eightCharacters)
+    await loginPage.login(eightCharacters);
 
     await expect(desktopPage.userName).toHaveText(expectedUser);
   });

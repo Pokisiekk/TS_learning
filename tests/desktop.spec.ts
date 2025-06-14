@@ -12,7 +12,7 @@ test.describe('My desktop page', () => {
     desktopPage = new DesktopPage(page);
 
     await page.goto('/');
-    await loginPage.login(eightCharacters)
+    await loginPage.login(eightCharacters);
   });
 
   test('Make payment', async ({ page }) => {
