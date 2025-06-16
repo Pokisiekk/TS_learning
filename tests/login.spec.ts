@@ -25,25 +25,33 @@ test.describe('Login to Demobank', () => {
     },
   );
 
-  test('Login with incorrect username', { tag: '@login' }, async ({ page }) => {
-    const fourCharacters = loginData.fourCharacters;
-    const expectedWarning = 'identyfikator ma min. 8 znaków';
+  test(
+    'Login with incorrect username',
+    { tag: ['@login', '@unhappy_path'] },
+    async ({ page }) => {
+      const fourCharacters = loginData.fourCharacters;
+      const expectedWarning = 'identyfikator ma min. 8 znaków';
 
-    await loginPage.loginInput.fill(fourCharacters);
-    await loginPage.loginInput.blur();
+      await loginPage.loginInput.fill(fourCharacters);
+      await loginPage.loginInput.blur();
 
-    await expect(loginPage.loginError).toHaveText(expectedWarning);
-  });
+      await expect(loginPage.loginError).toHaveText(expectedWarning);
+    },
+  );
 
-  test('Login with incorrect password', { tag: '@login' }, async ({ page }) => {
-    const eightCharacters = loginData.eightCharacters;
-    const fourCharacters = loginData.fourCharacters;
-    const expectedWarning = 'hasło ma min. 8 znaków';
+  test(
+    'Login with incorrect password',
+    { tag: ['@login', '@unhappy_path'] },
+    async ({ page }) => {
+      const eightCharacters = loginData.eightCharacters;
+      const fourCharacters = loginData.fourCharacters;
+      const expectedWarning = 'hasło ma min. 8 znaków';
 
-    await loginPage.loginInput.fill(eightCharacters);
-    await loginPage.passwordInput.fill(fourCharacters);
-    await loginPage.passwordInput.blur();
+      await loginPage.loginInput.fill(eightCharacters);
+      await loginPage.passwordInput.fill(fourCharacters);
+      await loginPage.passwordInput.blur();
 
-    await expect(loginPage.passwordError).toHaveText(expectedWarning);
-  });
+      await expect(loginPage.passwordError).toHaveText(expectedWarning);
+    },
+  );
 });
