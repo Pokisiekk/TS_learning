@@ -13,5 +13,6 @@ export class LoginPage {
     await this.loginInput.fill(eightCharacters);
     await this.passwordInput.fill(eightCharacters);
     await this.loginButton.click();
+    await this.page.waitForLoadState('domcontentloaded');
   }
 }

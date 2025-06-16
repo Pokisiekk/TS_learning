@@ -20,7 +20,10 @@ test.describe('Payments', () => {
 
   test(
     'Single Payment',
-    { tag: ['@payment', '@integration'] },
+    {
+      tag: ['@payment', '@integration'],
+      annotation: { type: 'Information', description: 'Annotation learning' },
+    },
     async ({ page }) => {
       const receiverName = 'Jan Nowak';
       const receiverAccount = '13 4324 3564 6453 2143 2143 43255';
